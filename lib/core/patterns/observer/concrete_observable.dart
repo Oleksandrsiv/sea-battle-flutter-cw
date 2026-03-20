@@ -30,4 +30,12 @@ class GameEngine implements IGamePublisher {
     }
   }
 
+  void fireAt(int x, int y) {
+    _lastX = x;
+    _lastY = y;
+    _lastStatus = CellStatus.miss;
+
+    notifySubscribers();
+  }
+
 }
