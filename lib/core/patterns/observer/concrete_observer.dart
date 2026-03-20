@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'concrete_observable.dart';
+import '../../engine/game_engine.dart';
 import 'observer.dart';
 
 // [ConcreteObserver]
