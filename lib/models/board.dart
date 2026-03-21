@@ -62,4 +62,17 @@ class Board {
       grid[y][x].status = CellStatus.ship;
     }
   }
+
+    void removeShip(int startX, int startY) {
+    Cell cell = grid[startY][startX];
+    if (cell.status == CellStatus.ship && cell.ship != null) {
+      Ship ship = cell.ship!;
+      for (int i = 0; i < ship.size; i++) {
+        int x = ship.isHorizontal ? startX + i : startX;
+        int y = ship.isHorizontal ? startY : startY + i;
+        grid[y][x].ship = null;
+        grid[y][x].status = CellStatus.water;
+      }
+    }
+  }
 }
