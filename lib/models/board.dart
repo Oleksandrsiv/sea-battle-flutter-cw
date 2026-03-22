@@ -75,4 +75,84 @@ class Board {
       }
     }
   }
+
+  // returns true if there is at least one alive ship with size > 1
+  bool hasMultiDeckShipsAlive() {
+    Set<Ship> aliveShips = {}; // Use a set to avoid duplicates
+
+    for (int y = 0; y < size; y++) {
+      for (int x = 0; x < size; x++) {
+        Ship? ship = grid[y][x].ship;
+        if (ship != null && !ship.isSunk) {
+          aliveShips.add(ship);
+        }
+      }
+    }
+
+    // check if there is at least one alive ship with size > 1
+    return aliveShips.any((ship) => ship.size > 1);
+  }
+
+
+  //NEW LOGIC FOR SHOT
+  // returns true if hit
+  bool receiveShot(int targetX, int targetY) {
+    if (!isValidCoordinates(targetX, targetY)) return false;
+
+    Cell targetCell = grid[targetY][targetX];
+
+    // Target hit!
+    if (targetCell.status == CellStatus.ship && targetCell.ship != null) {
+      targetCell.status = CellStatus.hit; // Ранимо клітинку
+
+      Ship hitShip = targetCell.ship!;
+      hitShip.takeDamage(); // Віднімаємо здоров'я у корабля
+
+      if (hitShip.isSunk) {
+        _markShipAsSunk(hitShip);
+      }
+      return true; // hit signal
+    }
+    // miss
+    else if (targetCell.status == CellStatus.water) {
+      targetCell.status = CellStatus.miss;
+      return false; // Сигнал про промах
+    }
+
+    // (hit, miss, sunk)
+    return false;
+  }
+
+  // mark ship as sunk and mark surrounding cells as miss
+  void _markShipAsSunk(Ship ship) {
+    int minX = size, maxX = -1;
+    int minY = size, maxY = -1;
+
+    // change status of ship cells to sunk and find boundaries of the ship
+    for (int y = 0; y < size; y++) {
+      for (int x = 0; x < size; x++) {
+        if (grid[y][x].ship == ship) {
+          grid[y][x].status = CellStatus.sunk;
+
+          // Записуємо крайні точки корабля
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+        }
+      }
+    }
+
+    // mark surrounding cells as miss
+    for (int y = minY - 1; y <= maxY + 1; y++) {
+      for (int x = minX - 1; x <= maxX + 1; x++) {
+        if (isValidCoordinates(x, y)) {
+         // if the cell is water, mark it as miss (to indicate that there can't be any ship there)
+          if (grid[y][x].status == CellStatus.water) {
+            grid[y][x].status = CellStatus.miss;
+          }
+        }
+      }
+    }
+  }
 }

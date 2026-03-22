@@ -1,6 +1,6 @@
 import '../core/patterns/factory-method/product.dart';
 
-enum CellStatus { water, ship, hit, miss }
+enum CellStatus { water, ship, hit, miss, sunk }
 
 class Cell {
   final int x;
