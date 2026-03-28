@@ -106,7 +106,7 @@ class Board {
       targetCell.status = CellStatus.hit; // Ранимо клітинку
 
       Ship hitShip = targetCell.ship!;
-      hitShip.takeDamage(); // Віднімаємо здоров'я у корабля
+      hitShip.takeDamage();
 
       if (hitShip.isSunk) {
         _markShipAsSunk(hitShip);

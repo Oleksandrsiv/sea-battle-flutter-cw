@@ -1,6 +1,6 @@
 
 
 abstract interface class ICommand{
-  void execute();
+  bool execute();
   void undo();
 }

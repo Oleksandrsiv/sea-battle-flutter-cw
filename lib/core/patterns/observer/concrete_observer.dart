@@ -3,7 +3,6 @@ import 'dart:developer';
 import '../../engine/game_engine.dart';
 import 'observer.dart';
 
-// [ConcreteObserver]
 class UIController implements IGameSubscriber {
   // STORES REFERENCE to ConcreteSubject
   final GameEngine _engine;

@@ -50,11 +50,17 @@ class RandomFleetBuilder implements FleetBuilder {
         int y = _random.nextInt(10);
         newShip.isHorizontal = _random.nextBool(); // Випадкова орієнтація
 
-        // TODO: Тут ми маємо додати перевірку на перетин з іншими кораблями.
-        // Поки що просто ставимо корабель (спрощена логіка для каркасу).
-        if (_board.isValidCoordinates(x, y)) {
-          _board.grid[y][x].ship = newShip;
-          _board.grid[y][x].status = CellStatus.ship; // SHIP!!!
+        // check if ship can be placed at these cords
+        if (_board.canPlaceShip(x, y, newShip.size, newShip.isHorizontal)) {
+
+          // if true -> place ship on the board
+          for (int j = 0; j < newShip.size; j++) {
+            int currentX = newShip.isHorizontal ? x + j : x;
+            int currentY = newShip.isHorizontal ? y : y + j;
+
+            _board.grid[currentY][currentX].ship = newShip;
+            _board.grid[currentY][currentX].status = CellStatus.ship;
+          }
           placed = true;
         }
       }

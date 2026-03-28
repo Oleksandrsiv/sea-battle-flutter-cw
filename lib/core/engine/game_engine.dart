@@ -1,63 +1,117 @@
+  import 'dart:developer';
+
 import '../../../models/cell.dart';
+  import '../../models/board.dart';
 import '../patterns/observer/observable.dart';
-import '../patterns/observer/observer.dart';
-import '../patterns/state/concrete_state.dart';
-import '../patterns/state/state.dart';
+  import '../patterns/observer/observer.dart';
+  import '../patterns/state/concrete_setup_state.dart';
+  import '../patterns/state/state.dart';
+import '../patterns/strategy/destroy_strategy.dart';
+import '../patterns/strategy/probe_direction_strategy.dart';
+import '../patterns/strategy/random_hunt_strategy.dart';
+import '../patterns/strategy/strategy.dart';
 
-class GameEngine implements IGamePublisher {
-// data
-  int _lastX = 0;
-  int _lastY = 0;
-  CellStatus _lastStatus = CellStatus.water;
+  class GameEngine implements IGamePublisher {
+  // data
+    int _lastX = 0;
+    int _lastY = 0;
+    CellStatus _lastStatus = CellStatus.water;
 
-  int get lastX => _lastX;
-  int get lastY => _lastY;
-  CellStatus get lastStatus => _lastStatus;
+    int get lastX => _lastX;
+    int get lastY => _lastY;
+    CellStatus get lastStatus => _lastStatus;
 
-// state. rule, phase of game, turn
+    Board playerBoard = Board();
+    Board botBoard = Board();
 
-  GameState _currentState;
+    IBotStrategy botStrategy = RandomHuntStrategy();
 
-  String get currentStateName => _currentState.stateName;
 
-  GameEngine() : _currentState = SetupState();
+  // some helper methods for state and strategy to interact with the engine
+    void recordLastShot(int x, int y, CellStatus status) {
+      _lastX = x;
+      _lastY = y;
+      _lastStatus = status;
+    }
 
-  void changeState(GameState newState) {
-    _currentState = newState;
-    print("Система: Стан змінено на '${newState.stateName}'");
-    notifySubscribers();
-  }
+    void updateBotStrategy(bool isHit, int hitX, int hitY) {
+      if (_lastStatus == CellStatus.sunk) {
+        log("Бот потопив корабель! Повернення до режиму пошуку.");
+        botStrategy = RandomHuntStrategy();
+        return;
+      }
 
-  void handleCellTap(int x, int y) {
-    _currentState.handleTap(this, x, y);
-    notifySubscribers();
-  }
+      if (isHit) {
+        if (botStrategy is RandomHuntStrategy) {
+          log("Перше влучання бота. Перехід на ProbeDirectionStrategy.");
+          botStrategy = ProbeDirectionStrategy(hitX, hitY);
 
-  bool processShot(int x, int y) {
-    _lastX = x;
-    _lastY = y;
-    // Поки що заглушка: вважаємо, що завжди промах
-    _lastStatus = CellStatus.miss;
-    return false; // Повертаємо false, щоб PlayerTurnState знав, що ми промазали
-  }
+        } else if (botStrategy is ProbeDirectionStrategy) {
+          log("Друге влучання бота. Вектор знайдено. Перехід на DestroyStrategy.");
 
-// observer
-  final List<IGameSubscriber> _subscribers = [];
+          var probeStrategy = botStrategy as ProbeDirectionStrategy;
 
-  @override
-  void subscribe(IGameSubscriber subscriber) {
-    _subscribers.add(subscriber);
-  }
+          botStrategy = DestroyStrategy(
+            probeStrategy.firstHitX,
+            probeStrategy.firstHitY,
+            hitX,
+            hitY,
+          );
+        }
+        // if botStrategy is DestroyStrategy,
+        // we just continue with the same strategy until the ship is sunk,
+        // then we will switch back to RandomHuntStrategy in the next turn.
+      }
+    }
 
-  @override
-  void unsubscribe(IGameSubscriber subscriber) {
-    _subscribers.remove(subscriber);
-  }
 
-  @override
-  void notifySubscribers() {
-    for (var subscriber in _subscribers) {
-      subscriber.update();
+  // state. rule, phase of game, turn
+
+    GameState _currentState;
+
+    String get currentStateName => _currentState.stateName;
+
+    GameEngine() : _currentState = SetupState(){
+      _currentState.onEnter(this);
+    }
+
+    void changeState(GameState newState) {
+      _currentState = newState;
+      _currentState.onEnter(this);
+      print("Система: Стан змінено на '${newState.stateName}'");
+      notifySubscribers();
+    }
+
+    void handleCellTap(int x, int y) {
+      _currentState.handleTap(this, x, y);
+      notifySubscribers();
+    }
+
+    bool processShot(int x, int y) {
+      _lastX = x;
+      _lastY = y;
+      // Поки що заглушка: вважаємо, що завжди промах
+      _lastStatus = CellStatus.miss;
+      return false; // Повертаємо false, щоб PlayerTurnState знав, що ми промазали
+    }
+
+  // observer
+    final List<IGameSubscriber> _subscribers = [];
+
+    @override
+    void subscribe(IGameSubscriber subscriber) {
+      _subscribers.add(subscriber);
+    }
+
+    @override
+    void unsubscribe(IGameSubscriber subscriber) {
+      _subscribers.remove(subscriber);
+    }
+
+    @override
+    void notifySubscribers() {
+      for (var subscriber in _subscribers) {
+        subscriber.update();
+      }
     }
   }
-}
