@@ -8,7 +8,7 @@ import 'concrete_game_over_state.dart';
 
 class PlayerTurnState implements GameState {
   @override
-  String get stateName => "Ваш хід!";
+  String get stateName => "Your turn!";
 
   @override
   void onEnter(GameEngine engine) {}

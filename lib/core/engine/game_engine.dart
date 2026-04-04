@@ -87,13 +87,6 @@ import '../patterns/strategy/strategy.dart';
       notifySubscribers();
     }
 
-    bool processShot(int x, int y) {
-      _lastX = x;
-      _lastY = y;
-      // Поки що заглушка: вважаємо, що завжди промах
-      _lastStatus = CellStatus.miss;
-      return false; // Повертаємо false, щоб PlayerTurnState знав, що ми промазали
-    }
 
   // observer
     final List<IGameSubscriber> _subscribers = [];

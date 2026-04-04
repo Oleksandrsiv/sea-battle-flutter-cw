@@ -1,30 +1,40 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
 
+
+
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:sea_battle_cw/main.dart';
+import 'package:sea_battle_cw/models/board.dart';
+import 'package:sea_battle_cw/ui/widgets/board_widget.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  runApp(
+      MaterialApp(
+        home: MyFirstScreen(), // Кажемо: "Ось твій стартовий екран"
+      )
+  );
+}
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+class MyFirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Бій!")),
+      body: Center( // Центруємо нашу колонку на екрані
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Вирівнюємо елементи по центру по вертикалі
+          children: [
+            Text("Ваш хід!"),           // Елемент 1 (зверху)
+            SizedBox(height: 20),       // Елемент 2 (просто порожній простір для відступу)
+            BoardWidget(board: Board()), // Елемент 3 (Наше ігрове поле 10х10)
+            SizedBox(height: 20),       // Елемент 4 (знову відступ)
+            ElevatedButton(             // Елемент 5 (кнопка внизу)
+              onPressed: () {},
+              child: Text("Здатися"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

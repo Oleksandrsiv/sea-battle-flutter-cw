@@ -1,5 +1,3 @@
-//  concrete_command.dart
-
 import 'dart:developer';
 import '../../../models/board.dart';
 import '../factory-method/product.dart';
