@@ -15,6 +15,10 @@ class SetupState implements GameState {
 
   bool _isHorizontal = true;
 
+  set isHorizontal(bool value) {
+    _isHorizontal = value;
+  }
+
   @override
   String get stateName => "Розстановка флоту";
 

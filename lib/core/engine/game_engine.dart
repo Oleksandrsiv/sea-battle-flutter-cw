@@ -67,7 +67,7 @@ import 'observer/observer.dart';
   // state. rule, phase of game, turn
 
     GameState _currentState;
-
+    GameState get currentState => _currentState;
     String get currentStateName => _currentState.stateName;
 
     GameEngine() : _currentState = SetupState(){

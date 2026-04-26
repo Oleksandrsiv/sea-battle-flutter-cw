@@ -18,7 +18,7 @@ class MainMenuScreen extends StatelessWidget {
           children: [
             // ЗАГОЛОВОК
             const Text(
-              'МОРСЬКИЙ БІЙ',
+              'Sea Battle',
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.w900,

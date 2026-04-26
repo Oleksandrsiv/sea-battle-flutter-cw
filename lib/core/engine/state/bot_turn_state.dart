@@ -1,8 +1,5 @@
 import 'package:sea_battle_cw/core/engine/state/state.dart';
-//import 'package:sea_battle_cw/core/patterns/state/state.dart';
 import '../../engine/game_engine.dart';
-//import '../template-method/bot_class.dart';
-//import '../../patterns/template-method/bot_class.dart';
 import '../template-method/bot_class.dart';
 import 'game_over_state.dart';
 
@@ -12,7 +9,6 @@ class BotTurnState implements GameState {
 
   @override
   void handleTap(GameEngine engine, int x, int y) {
-    // Класика: ігноруємо панічні кліки гравця
     print("Зачекайте, зараз думає бот. Ваш клік по [$x, $y] проігноровано.");
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/engine/game_engine.dart';
 import '../../core/engine/observer/observer.dart';
-//import '../../core/patterns/observer/observer.dart';
+
 
 
 class GameController extends ChangeNotifier implements IGameSubscriber {
@@ -13,10 +13,14 @@ class GameController extends ChangeNotifier implements IGameSubscriber {
   }
 
   // This method is called by the GameEngine whenever something changes in the game state,
-  // by calling notifySubscribers() inside the engine. (Observer pattern)
+  // by calling notifySubscribers() inside the engine.
   @override
   void update() {
     notifyListeners();
+  }
+
+  void handleTap(int x, int y) {
+    engine.handleCellTap(x, y);
   }
 
   @override
@@ -24,4 +28,5 @@ class GameController extends ChangeNotifier implements IGameSubscriber {
     engine.unsubscribe(this);
     super.dispose();
   }
+
 }
