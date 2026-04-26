@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sea_battle_cw/ui/screens/main_screen.dart';
 import 'package:sea_battle_cw/ui/widgets/board_widget.dart';
 import 'models/board.dart';
 
@@ -7,7 +8,7 @@ import 'models/board.dart';
 void main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: BoardTestScreen(),
+    home: MainMenuScreen(super.key, onPlayPressed: null), // Просто для тесту, потім замінимо на нормальний екран гри
   ));
 }
 

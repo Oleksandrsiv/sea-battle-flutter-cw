@@ -12,12 +12,11 @@ class PlayerTurnAction extends TurnAction {
 
   @override
   (int, int)? getCoordinates() {
-    // Гравець просто стріляє туди, куди клікнув.
-    // Перевіряємо, чи ми вже не стріляли сюди (опціонально, але корисно)
+    // check if click is within board boundaries and if cell was not already targeted
     if (!targetBoard.isValidCoordinates(clickX, clickY)) return null;
     var status = targetBoard.grid[clickY][clickX].status;
     if (status == CellStatus.miss || status == CellStatus.hit || status == CellStatus.sunk) {
-      return null; // Сюди вже стріляли, ігноруємо клік
+      return null; // this cell was already targeted, player should click somewhere else
     }
 
     return (clickX, clickY);

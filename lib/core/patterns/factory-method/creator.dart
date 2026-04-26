@@ -1,4 +1,4 @@
-import 'product.dart'; // Імпортуємо продукти, які лежать у цій же папці
+import 'product.dart';
 
 abstract class ShipCreator {
   Ship createShip();

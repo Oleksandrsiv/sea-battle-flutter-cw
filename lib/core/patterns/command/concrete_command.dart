@@ -15,14 +15,14 @@ class PlaceShipCommand implements ICommand {
    Ship getShip() => _ship;
 
    @override
-   bool execute() { // Обов'язково bool!
+   bool execute() {
      if (_board.canPlaceShip(_x, _y, _ship.size, _ship.isHorizontal)) {
        _board.placeShip(_ship, _x, _y);
        log("Команда виконана: корабель розміщено на [$_x, $_y].");
-       return true; // Повертаємо успіх
+       return true;
      } else {
        log("Команда не виконана: місце зайняте.");
-       return false; // Повертаємо невдачу
+       return false;
      }
    }
 
