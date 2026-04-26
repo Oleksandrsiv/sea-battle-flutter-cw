@@ -1,15 +1,14 @@
-  import 'dart:developer';
-
+import 'dart:developer';
+import 'package:sea_battle_cw/core/engine/state/setup_state.dart';
+import 'package:sea_battle_cw/core/engine/state/state.dart';
 import '../../../models/cell.dart';
-  import '../../models/board.dart';
-import '../patterns/observer/observable.dart';
-  import '../patterns/observer/observer.dart';
-  import '../patterns/state/concrete_setup_state.dart';
-  import '../patterns/state/state.dart';
-import '../patterns/strategy/destroy_strategy.dart';
-import '../patterns/strategy/probe_direction_strategy.dart';
-import '../patterns/strategy/random_hunt_strategy.dart';
-import '../patterns/strategy/strategy.dart';
+import '../../models/board.dart';
+import '../ai/strategy/destroy_strategy.dart';
+import '../ai/strategy/probe_direction_strategy.dart';
+import '../ai/strategy/random_hunt_strategy.dart';
+import '../ai/strategy/i_bot_strategy.dart';
+import 'observer/observable.dart';
+import 'observer/observer.dart';
 
   class GameEngine implements IGamePublisher {
   // data

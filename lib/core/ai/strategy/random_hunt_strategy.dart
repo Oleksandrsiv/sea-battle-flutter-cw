@@ -2,7 +2,8 @@
 
 import 'dart:math';
 
-import 'package:sea_battle_cw/core/patterns/strategy/strategy.dart';
+import 'package:sea_battle_cw/core/ai/strategy/i_bot_strategy.dart';
+//import 'package:sea_battle_cw/core/patterns/strategy/i_bot_strategy.dart';
 import 'package:sea_battle_cw/models/board.dart';
 
 import '../../../models/cell.dart';

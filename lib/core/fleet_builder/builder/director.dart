@@ -1,4 +1,4 @@
-import 'builder.dart';
+import 'i_builder.dart';
 
 class Director {
   void constructStandardFleet(FleetBuilder builder) {

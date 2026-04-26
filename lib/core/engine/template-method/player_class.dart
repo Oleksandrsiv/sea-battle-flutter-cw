@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import '../../../models/cell.dart';
-import '../state/concrete_bot_turn_state.dart';
-import 'abstract_class.dart';
+import '../state/bot_turn_state.dart';
+import 'turn_action.dart';
 
 class PlayerTurnAction extends TurnAction {
   final int clickX;

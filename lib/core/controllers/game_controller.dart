@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/engine/game_engine.dart';
-import '../../core/patterns/observer/observer.dart';
+import '../../core/engine/observer/observer.dart';
+//import '../../core/patterns/observer/observer.dart';
 
 
 class GameController extends ChangeNotifier implements IGameSubscriber {

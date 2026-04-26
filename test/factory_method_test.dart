@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sea_battle_cw/core/fleet_builder/factory-method/ship_creator.dart';
+import 'package:sea_battle_cw/core/fleet_builder/factory-method/i_ship.dart';
 
-import '../lib/core/patterns/factory-method/concrete_creator.dart';
-import '../lib/core/patterns/factory-method/product.dart';
 
 
 void main() {

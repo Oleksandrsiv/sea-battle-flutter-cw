@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sea_battle_cw/core/patterns/builder/concrete_builder.dart';
-
+import 'package:sea_battle_cw/core/fleet_builder/builder/auto_builder.dart';
+import 'package:sea_battle_cw/core/fleet_builder/builder/director.dart';
+import 'package:sea_battle_cw/core/fleet_builder/builder/manual_fleet_builder.dart';
+import 'package:sea_battle_cw/core/fleet_builder/factory-method/ship.dart';
+import 'package:sea_battle_cw/core/fleet_builder/factory-method/i_ship.dart';
 import 'package:sea_battle_cw/models/board.dart';
 import 'package:sea_battle_cw/models/cell.dart';
-import 'package:sea_battle_cw/core/patterns/factory-method/concrete_product.dart';
-import 'package:sea_battle_cw/core/patterns/builder/director.dart';
-import 'package:sea_battle_cw/core/patterns/builder/manual_fleet_builder.dart'; // якщо він у тебе в окремому файлі
-import 'package:sea_battle_cw/core/patterns/factory-method/product.dart';
+
 
 
 void main() {

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sea_battle_cw/core/patterns/strategy/probe_direction_strategy.dart';
-import 'package:sea_battle_cw/core/patterns/strategy/random_hunt_strategy.dart';
-import 'package:sea_battle_cw/core/patterns/strategy/destroy_strategy.dart';
+import 'package:sea_battle_cw/core/ai/strategy/destroy_strategy.dart';
+import 'package:sea_battle_cw/core/ai/strategy/probe_direction_strategy.dart';
+import 'package:sea_battle_cw/core/ai/strategy/random_hunt_strategy.dart';
 import 'package:sea_battle_cw/models/board.dart';
 import 'package:sea_battle_cw/models/cell.dart';
 

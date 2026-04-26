@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sea_battle_cw/core/patterns/factory-method/product.dart';
+import 'package:sea_battle_cw/core/fleet_builder/command/place_ship_command.dart';
+import 'package:sea_battle_cw/core/fleet_builder/factory-method/ship.dart';
+import 'package:sea_battle_cw/core/fleet_builder/factory-method/i_ship.dart';
 import 'package:sea_battle_cw/models/board.dart';
 import 'package:sea_battle_cw/models/cell.dart';
-import 'package:sea_battle_cw/core/patterns/factory-method/concrete_product.dart';
-import 'package:sea_battle_cw/core/patterns/command/concrete_command.dart';
 
 
 void main() {

@@ -1,4 +1,4 @@
-import 'product.dart';
+import 'i_ship.dart';
 
 
 class Battleship extends Ship {

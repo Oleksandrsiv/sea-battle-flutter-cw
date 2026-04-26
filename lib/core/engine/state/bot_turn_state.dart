@@ -1,7 +1,10 @@
-import 'package:sea_battle_cw/core/patterns/state/state.dart';
+import 'package:sea_battle_cw/core/engine/state/state.dart';
+//import 'package:sea_battle_cw/core/patterns/state/state.dart';
 import '../../engine/game_engine.dart';
-import '../template-method/bot_concrete_class.dart';
-import 'concrete_game_over_state.dart';
+//import '../template-method/bot_class.dart';
+//import '../../patterns/template-method/bot_class.dart';
+import '../template-method/bot_class.dart';
+import 'game_over_state.dart';
 
 class BotTurnState implements GameState {
   @override
