@@ -55,8 +55,8 @@ class SetupScreen extends StatelessWidget {
                       color: Colors.green),
                 )
                     : Text(
-                  'Ставимо: ${currentShip.name} (${currentShip.size} палуби)\n'
-                      'Орієнтація: ${setupState.isHorizontal ? "Горизонтальна" : "Вертикальна"}',
+                  'Place: ${currentShip.name} (${currentShip.size} deck)\n'
+                      'Orientation: ${setupState.isHorizontal ? "Horizontal" : "Vertical"}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),

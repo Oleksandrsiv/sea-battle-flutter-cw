@@ -4,23 +4,23 @@ import 'i_ship.dart';
 class Battleship extends Ship {
   Battleship() : super(4);
   @override
-  String get name => "Лінкор";
+  String get name => "Battleship";
 }
 
 class Cruiser extends Ship {
   Cruiser() : super(3);
   @override
-  String get name => "Крейсер";
+  String get name => "Cruiser";
 }
 
 class Destroyer extends Ship {
   Destroyer() : super(2);
   @override
-  String get name => "Есмінець";
+  String get name => "Destroyer";
 }
 
 class Submarine extends Ship {
   Submarine() : super(1);
   @override
-  String get name => "Підводний човен";
+  String get name => "Submarine";
 }

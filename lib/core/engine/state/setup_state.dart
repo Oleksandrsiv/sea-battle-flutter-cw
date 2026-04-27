@@ -20,7 +20,7 @@ class SetupState implements GameState {
   }
 
   @override
-  String get stateName => "Розстановка флоту";
+  String get stateName => "Setup Phase";
 
   // getter for UI to display current state info
   bool get isHorizontal => _isHorizontal;
@@ -29,7 +29,7 @@ class SetupState implements GameState {
 
   @override
   void onEnter(GameEngine engine) {
-    log("Ініціалізація фази розстановки. Замовляємо кораблі...");
+    log("Initializing setup phase. Ordering ships...");
 
     var manualBuilder = ManualFleetBuilder();
     var director = Director();
@@ -37,13 +37,13 @@ class SetupState implements GameState {
     director.constructStandardFleet(manualBuilder);
     _shipsToPlace = manualBuilder.getResult();
 
-    log("До розстановки підготовлено кораблів: ${_shipsToPlace.length}");
+    log("Ships ready for placement: ${_shipsToPlace.length}");
   }
 
   @override
   void handleTap(GameEngine engine, int x, int y) {
     if (_shipsToPlace.isEmpty) {
-      log("Всі кораблі вже розставлено!");
+      log("All ships are already placed!");
       return;
     }
 
@@ -59,13 +59,13 @@ class SetupState implements GameState {
       _commandHistory.add(command);
       _shipsToPlace.removeAt(0);
 
-      log("Залишилось розставити: ${_shipsToPlace.length}");
+      log("Remaining ships: ${_shipsToPlace.length}");
 
       if (_shipsToPlace.isEmpty) {
-        log("Флот повністю укомплектовано! Натисніть кнопку 'В бій'.");
+        log("Fleet is fully assembled! Press the 'TO BATTLE!' button.");
       }
     } else {
-      log("Не можемо поставити сюди. Місце зайняте або вихід за межі.");
+      log("Cannot place ship here. Space is occupied or outside the board.");
     }
   }
 

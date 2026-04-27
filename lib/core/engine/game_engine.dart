@@ -35,18 +35,18 @@ import 'observer/observer.dart';
 
     void updateBotStrategy(bool isHit, int hitX, int hitY) {
       if (_lastStatus == CellStatus.sunk) {
-        log("Бот потопив корабель! Повернення до режиму пошуку.");
+        log("Bot sunk a ship. Returning to RandomHuntStrategy.");
         botStrategy = RandomHuntStrategy();
         return;
       }
 
       if (isHit) {
         if (botStrategy is RandomHuntStrategy) {
-          log("Перше влучання бота. Перехід на ProbeDirectionStrategy.");
+          log("First hit by bot at [$hitX, $hitY]. Switching to ProbeDirectionStrategy to find the rest of the ship.");
           botStrategy = ProbeDirectionStrategy(hitX, hitY);
 
         } else if (botStrategy is ProbeDirectionStrategy) {
-          log("Друге влучання бота. Вектор знайдено. Перехід на DestroyStrategy.");
+          log("Second hit by bot. Vector found. Transitioning to DestroyStrategy.");
 
           var probeStrategy = botStrategy as ProbeDirectionStrategy;
 
@@ -77,7 +77,7 @@ import 'observer/observer.dart';
     void changeState(GameState newState) {
       _currentState = newState;
       _currentState.onEnter(this);
-      print("Система: Стан змінено на '${newState.stateName}'");
+      print("System: State changed to '${newState.stateName}'");
       notifySubscribers();
     }
 

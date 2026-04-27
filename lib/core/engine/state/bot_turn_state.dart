@@ -5,11 +5,11 @@ import 'game_over_state.dart';
 
 class BotTurnState implements GameState {
   @override
-  String get stateName => "Хід супротивника...";
+  String get stateName => "Enemy`s turn...";
 
   @override
   void handleTap(GameEngine engine, int x, int y) {
-    print("Зачекайте, зараз думає бот. Ваш клік по [$x, $y] проігноровано.");
+    print("Wait, the bot is thinking. Your click on [$x, $y] is ignored.");
   }
 
   @override
@@ -22,7 +22,7 @@ class BotTurnState implements GameState {
 
     // check if game is over after bot's turn
     if (!engine.playerBoard.hasMultiDeckShipsAlive()) {
-      engine.changeState(GameOverState("Бот переміг. Флот знищено."));
+      engine.changeState(GameOverState("Bot wins. Fleet destroyed."));
     } else if (engine.currentStateName == stateName) {
 
       onEnter(engine);
