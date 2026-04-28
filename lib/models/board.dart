@@ -1,6 +1,3 @@
-// import '../core/patterns/factory-method/i_ship.dart';
-
-
 import '../core/fleet_builder/factory-method/i_ship.dart';
 import 'cell.dart';
 
@@ -80,20 +77,18 @@ class Board {
   }
 
   // returns true if there is at least one alive ship with size > 1
-  bool hasMultiDeckShipsAlive() {
-    Set<Ship> aliveShips = {}; // Use a set to avoid duplicates
-
+  bool hasAliveShips() {
     for (int y = 0; y < size; y++) {
       for (int x = 0; x < size; x++) {
         Ship? ship = grid[y][x].ship;
         if (ship != null && !ship.isSunk) {
-          aliveShips.add(ship);
+          return true;
         }
       }
     }
 
-    // check if there is at least one alive ship with size > 1
-    return aliveShips.any((ship) => ship.size > 1);
+    // check if there is at least one alive ship
+    return false;
   }
 
 
@@ -106,7 +101,7 @@ class Board {
 
     // Target hit!
     if (targetCell.status == CellStatus.ship && targetCell.ship != null) {
-      targetCell.status = CellStatus.hit; // Ранимо клітинку
+      targetCell.status = CellStatus.hit; //  mark cell as hit
 
       Ship hitShip = targetCell.ship!;
       hitShip.takeDamage();
@@ -114,12 +109,12 @@ class Board {
       if (hitShip.isSunk) {
         _markShipAsSunk(hitShip);
       }
-      return true; // hit signal
+      return true; // hit
     }
     // miss
     else if (targetCell.status == CellStatus.water) {
       targetCell.status = CellStatus.miss;
-      return false; // Сигнал про промах
+      return false; // miss
     }
 
     // (hit, miss, sunk)

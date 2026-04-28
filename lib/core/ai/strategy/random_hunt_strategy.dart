@@ -15,7 +15,7 @@ class RandomHuntStrategy implements IBotStrategy {
     List<(int, int)> availableCells = [];
 
     // ask the board if there are still multi-deck ships alive
-    bool useCheckerboard = targetBoard.hasMultiDeckShipsAlive();
+    bool useCheckerboard = targetBoard.hasAliveShips();
 
     for (int y = 0; y < targetBoard.size; y++) {
       for (int x = 0; x < targetBoard.size; x++) {

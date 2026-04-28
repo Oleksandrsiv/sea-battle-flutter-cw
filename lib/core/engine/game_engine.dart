@@ -39,7 +39,6 @@ import 'observer/observer.dart';
         botStrategy = RandomHuntStrategy();
         return;
       }
-
       if (isHit) {
         if (botStrategy is RandomHuntStrategy) {
           log("First hit by bot at [$hitX, $hitY]. Switching to ProbeDirectionStrategy to find the rest of the ship.");

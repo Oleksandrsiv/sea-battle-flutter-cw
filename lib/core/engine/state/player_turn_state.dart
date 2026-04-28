@@ -20,7 +20,7 @@ class PlayerTurnState implements GameState {
     action.executeTurn();
 
     // check if the game is over after the player's shot
-    if (!engine.botBoard.hasMultiDeckShipsAlive() /* && перевірка на однопалубні, потім вирішу чи треба */) {
+    if (!engine.botBoard.hasAliveShips()) {
       engine.changeState(GameOverState("You win!"));
     }
   }

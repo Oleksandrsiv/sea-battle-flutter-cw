@@ -21,11 +21,11 @@ class BotTurnState implements GameState {
     action.executeTurn();
 
     // check if game is over after bot's turn
-    if (!engine.playerBoard.hasMultiDeckShipsAlive()) {
+    if (!engine.playerBoard.hasAliveShips()) {
       engine.changeState(GameOverState("Bot wins. Fleet destroyed."));
     } else if (engine.currentStateName == stateName) {
 
-      onEnter(engine);
+      await onEnter(engine);
     }
   }
 }
