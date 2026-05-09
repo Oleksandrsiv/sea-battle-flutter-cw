@@ -13,6 +13,8 @@ class SetupState implements GameState {
 
   final List<ICommand> _commandHistory = [];
 
+  bool get canUndo => _commandHistory.isNotEmpty;
+
   bool _isHorizontal = true;
 
   set isHorizontal(bool value) {
@@ -66,6 +68,20 @@ class SetupState implements GameState {
       }
     } else {
       log("Cannot place ship here. Space is occupied or outside the board.");
+    }
+  }
+
+  void undoLast() {
+    if (_commandHistory.isNotEmpty) {
+      final lastCommand = _commandHistory.removeLast() as PlaceShipCommand;
+
+      lastCommand.undo();
+
+      _shipsToPlace.insert(0, lastCommand.getShip());
+
+      log("Cancel ship placement, and return ship to queue. Remaining: ${_shipsToPlace.length}");
+    } else {
+      log("No actions to undo.");
     }
   }
 

@@ -62,7 +62,7 @@ class SetupScreen extends StatelessWidget {
                 ),
               ),
 
-              // Player board (boardwdget)
+              // Player board (board widget)
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: BoardWidget(
@@ -81,7 +81,7 @@ class SetupScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Кнопка повороту корабля
+                    // button 'rotate'
                     ElevatedButton.icon(
                       onPressed: isFleetReady
                           ? null
@@ -102,6 +102,18 @@ class SetupScreen extends StatelessWidget {
                         disabledBackgroundColor: Colors.grey,
                       ),
                       child: const Text('TO BATTLE!'),
+                    ),
+
+                    // button 'undo'
+                    ElevatedButton.icon(
+                      onPressed: setupState.canUndo
+                          ? () => controller.undo()
+                          : null,
+                      icon: const Icon(Icons.undo),
+                      label: const Text('Undo'),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.orange.shade900,
+                      ),
                     ),
                   ],
                 ),

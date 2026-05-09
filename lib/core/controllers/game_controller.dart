@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/engine/game_engine.dart';
 import '../../core/engine/observer/observer.dart';
+import '../engine/state/setup_state.dart';
 
 
 
@@ -27,6 +28,15 @@ class GameController extends ChangeNotifier implements IGameSubscriber {
   void dispose() {
     engine.unsubscribe(this);
     super.dispose();
+  }
+
+  void undo() {
+    if (engine.currentState is SetupState) {
+      final setupState = engine.currentState as SetupState;
+      setupState.undoLast();
+
+      notifyListeners();
+    }
   }
 
 }
