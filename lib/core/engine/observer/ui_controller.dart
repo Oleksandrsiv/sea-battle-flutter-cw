@@ -4,10 +4,9 @@ import '../../engine/game_engine.dart';
 import 'observer.dart';
 
 class UIController implements IGameSubscriber {
-  // STORES REFERENCE to ConcreteSubject
+
   final GameEngine _engine;
 
-  // We get this reference through the constructor
   UIController(this._engine);
 
   @override

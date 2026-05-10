@@ -91,8 +91,6 @@ class Board {
     return false;
   }
 
-
-  //NEW LOGIC FOR SHOT
   // returns true if hit
   bool receiveShot(int targetX, int targetY) {
     if (!isValidCoordinates(targetX, targetY)) return false;
@@ -117,7 +115,7 @@ class Board {
       return false; // miss
     }
 
-    // (hit, miss, sunk)
+    // Cell already targeted (hit, miss, or sunk). Ignore.
     return false;
   }
 
@@ -132,7 +130,7 @@ class Board {
         if (grid[y][x].ship == ship) {
           grid[y][x].status = CellStatus.sunk;
 
-          // Записуємо крайні точки корабля
+          // update boundaries
           if (x < minX) minX = x;
           if (x > maxX) maxX = x;
           if (y < minY) minY = y;

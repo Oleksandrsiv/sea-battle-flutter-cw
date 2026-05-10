@@ -13,8 +13,6 @@ class GameController extends ChangeNotifier implements IGameSubscriber {
     engine.subscribe(this);
   }
 
-  // This method is called by the GameEngine whenever something changes in the game state,
-  // by calling notifySubscribers() inside the engine.
   @override
   void update() {
     notifyListeners();

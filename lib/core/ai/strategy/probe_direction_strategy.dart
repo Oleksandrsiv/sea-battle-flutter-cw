@@ -22,7 +22,6 @@ class ProbeDirectionStrategy implements IBotStrategy {
   // variable to keep track of which direction we're currently checking
   int _currentDirectionIndex = 0;
 
-
   ProbeDirectionStrategy(this.firstHitX, this.firstHitY);
 
 
@@ -30,7 +29,7 @@ class ProbeDirectionStrategy implements IBotStrategy {
     (int x, int y) calculateNextShot(Board targetBoard) {
       log("check direction around point [$firstHitX, $firstHitY]...");
 
-      // cycle needed to cheeck all directions and prevent out-of-bounds errors or shooting at already known cells
+      // cycle needed to check all directions and prevent out-of-bounds errors or shooting at already known cells
       while (_currentDirectionIndex < _directions.length) {
         var (dx, dy) = _directions[_currentDirectionIndex];
 
@@ -46,12 +45,10 @@ class ProbeDirectionStrategy implements IBotStrategy {
             return (nextX, nextY);
           }
         }
-          // if we get here, it means this direction is either out of bounds or already known, so we just continue to the next one
       }
 
       // safety fallback:
       // if all directions are exhausted, we return to the original hit point
-      // (though ideally this should never happen if the logic is correct)
       log("Attention: All directions around the first hit are exhausted. Returning to the original hit point.");
       return (firstHitX, firstHitY);
     }

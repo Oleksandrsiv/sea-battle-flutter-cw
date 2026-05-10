@@ -38,7 +38,6 @@ class RandomHuntStrategy implements IBotStrategy {
 
     // guard against errors: if for some reason we ended up with no available cells (shouldn't happen, but just in case)
     if (availableCells.isEmpty) {
-      print('Warning: Checkerboard cells exhausted, searching everywhere.');
       return _emergencyFallback(targetBoard);
     }
 

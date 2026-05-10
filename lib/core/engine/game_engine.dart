@@ -26,7 +26,6 @@ import 'observer/observer.dart';
     IBotStrategy botStrategy = RandomHuntStrategy();
 
 
-  // some helper methods for state and strategy to interact with the engine
     void recordLastShot(int x, int y, CellStatus status) {
       _lastX = x;
       _lastY = y;
@@ -56,15 +55,11 @@ import 'observer/observer.dart';
             hitY,
           );
         }
-        // if botStrategy is DestroyStrategy,
-        // we just continue with the same strategy until the ship is sunk,
-        // then we will switch back to RandomHuntStrategy in the next turn.
       }
     }
 
 
   // state. rule, phase of game, turn
-
     GameState _currentState;
     GameState get currentState => _currentState;
     String get currentStateName => _currentState.stateName;
@@ -76,7 +71,7 @@ import 'observer/observer.dart';
     void changeState(GameState newState) {
       _currentState = newState;
       _currentState.onEnter(this);
-      print("System: State changed to '${newState.stateName}'");
+      log("System: State changed to '${newState.stateName}'");
       notifySubscribers();
     }
 
