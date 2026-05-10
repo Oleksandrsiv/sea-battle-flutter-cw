@@ -1,9 +1,9 @@
 import 'dart:math';
 import '../../../models/board.dart';
 import '../../../models/cell.dart';
-import '../factory-method/i_ship.dart';
-import '../factory-method/i_ship_creator.dart';
-import 'i_builder.dart';
+import '../factory-method/iship.dart';
+import '../factory-method/iship_creator.dart';
+import 'ibuilder.dart';
 import '../factory-method/ship_creator.dart';
 
 class RandomFleetBuilder implements FleetBuilder {

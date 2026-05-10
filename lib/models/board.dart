@@ -1,4 +1,4 @@
-import '../core/fleet_builder/factory-method/i_ship.dart';
+import '../core/fleet_builder/factory-method/iship.dart';
 import 'cell.dart';
 
 

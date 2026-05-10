@@ -6,7 +6,7 @@ import '../../models/board.dart';
 import '../ai/strategy/destroy_strategy.dart';
 import '../ai/strategy/probe_direction_strategy.dart';
 import '../ai/strategy/random_hunt_strategy.dart';
-import '../ai/strategy/i_bot_strategy.dart';
+import '../ai/strategy/ibot_strategy.dart';
 import 'observer/observable.dart';
 import 'observer/observer.dart';
 

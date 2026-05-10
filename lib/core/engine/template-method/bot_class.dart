@@ -1,8 +1,7 @@
 import 'dart:developer';
 
-import '../../ai/strategy/i_bot_strategy.dart';
+import '../../ai/strategy/ibot_strategy.dart';
 import '../state/player_turn_state.dart';
-//import '../strategy/i_bot_strategy.dart';
 import 'turn_action.dart';
 
 class BotTurnAction extends TurnAction {

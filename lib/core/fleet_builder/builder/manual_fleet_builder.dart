@@ -1,6 +1,6 @@
 import '../factory-method/ship_creator.dart';
-import '../factory-method/i_ship.dart';
-import 'i_builder.dart';
+import '../factory-method/iship.dart';
+import 'ibuilder.dart';
 
 class ManualFleetBuilder implements FleetBuilder {
   final List<Ship> _ships = [];

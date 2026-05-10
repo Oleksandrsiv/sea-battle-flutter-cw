@@ -1,7 +1,7 @@
 import 'dart:developer';
 import '../../../models/board.dart';
-import '../factory-method/i_ship.dart';
-import 'i_command.dart';
+import '../factory-method/iship.dart';
+import 'icommand.dart';
 
 class PlaceShipCommand implements ICommand {
 

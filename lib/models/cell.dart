@@ -1,7 +1,7 @@
-//import '../core/patterns/factory-method/i_ship.dart';
+//import '../core/patterns/factory-method/iship.dart';
 
 
-import '../core/fleet_builder/factory-method/i_ship.dart';
+import '../core/fleet_builder/factory-method/iship.dart';
 
 enum CellStatus { water, ship, hit, miss, sunk }
 

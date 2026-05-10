@@ -4,9 +4,9 @@ import 'package:sea_battle_cw/core/engine/state/state.dart';
 import '../../engine/game_engine.dart';
 import '../../fleet_builder/builder/director.dart';
 import '../../fleet_builder/builder/manual_fleet_builder.dart';
-import '../../fleet_builder/command/i_command.dart';
+import '../../fleet_builder/command/icommand.dart';
 import '../../fleet_builder/command/place_ship_command.dart';
-import '../../fleet_builder/factory-method/i_ship.dart';
+import '../../fleet_builder/factory-method/iship.dart';
 
 class SetupState implements GameState {
   List<Ship> _shipsToPlace = [];

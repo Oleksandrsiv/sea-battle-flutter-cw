@@ -1,5 +1,5 @@
-import 'i_ship_creator.dart';
-import 'i_ship.dart';
+import 'iship_creator.dart';
+import 'iship.dart';
 import 'ship.dart';
 
 class BattleshipCreator extends ShipCreator {
